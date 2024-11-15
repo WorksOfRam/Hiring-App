@@ -27,6 +27,7 @@ import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.ShapeDefaults
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -45,6 +46,7 @@ import com.srini.hiring.data.local.shouldShowWelcomeDialog
 import com.srini.hiring.data.model.HireModel
 import com.srini.hiring.presentation.intent.HireIntent
 import com.srini.hiring.presentation.viewmodel.HiringViewModel
+import com.srini.hiring.theme.HiringTheme
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
@@ -65,7 +67,7 @@ class MainActivity : ComponentActivity() {
                 viewModel.handleIntent(HireIntent.LoadItems)
             }
 
-            MaterialTheme {
+            HiringTheme {
                 Surface(
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
@@ -167,7 +169,6 @@ fun HiringHeader(listId: Int, isExpanded: Boolean, onToggleExpand: () -> Unit) {
             .padding(vertical = 8.dp)
             .background(
                 color = MaterialTheme.colorScheme.primaryContainer,
-                shape = MaterialTheme.shapes.medium
             )
             .padding(vertical = 12.dp, horizontal = 16.dp)
             .clickable { onToggleExpand() },
@@ -199,6 +200,7 @@ fun HireCard(item: HireModel) {
         modifier = Modifier
             .fillMaxWidth()
             .padding(vertical = 4.dp),
+        shape = ShapeDefaults.Small,
         colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surface),
         elevation = CardDefaults.elevatedCardElevation(defaultElevation = 2.dp)
     ) {
